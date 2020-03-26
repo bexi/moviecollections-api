@@ -43,10 +43,21 @@ functions:
   #     domain api call
   # - authorizer: authenticate using the AWS IAM role
   create:
-    handler: createMovie.main
+    handler: createUserMovie.main
     events:
       - http:
           path: usermovies
           method: post
+          cors: true
+          authorizer: aws_iam
+  get:
+    # Defines an HTTP API endpoint that calls the main function in get.js
+    # - path: url path is /notes/{id}
+    # - method: GET request
+    handler: getUserMovie.main
+    events:
+      - http:
+          path: notes/{id}
+          method: get
           cors: true
           authorizer: aws_iam
