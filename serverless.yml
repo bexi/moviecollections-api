@@ -42,7 +42,7 @@ functions:
   # - cors: enabled CORS (Cross-Origin Resource Sharing) for browser cross
   #     domain api call
   # - authorizer: authenticate using the AWS IAM role
-  create:
+  post:
     handler: createUserMovie.main
     events:
       - http:
@@ -57,7 +57,7 @@ functions:
     handler: getUserMovie.main
     events:
       - http:
-          path: notes/{id}
+          path: usermovie/{id}
           method: get
           cors: true
           authorizer: aws_iam

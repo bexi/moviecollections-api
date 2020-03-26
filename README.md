@@ -79,7 +79,7 @@ To run a function on your local
 
 ``` bash
 $ serverless invoke local --function hello
-$ serverless invoke local --function create --path mocks/create-event.json
+$ serverless invoke local --function put --path mocks/create-event.json
 $ serverless invoke local --function get --path mocks/get-event.json
 ```
 
