@@ -9,8 +9,11 @@ export async function main(event, context) {
     Item: {
       userId: event.requestContext.identity.cognitoIdentityId,
       movieId: uuidv1(),
-      content: data.content,
-      attachment: data.attachment,
+      imdbId: data.imdbId,
+      title: data.title,
+      posterUrl: data.posterUrl,
+      description: data.description,
+      imdbRating: data.imdbRating,
       createdAt: Date.now()
     }
   };

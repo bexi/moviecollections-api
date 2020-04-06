@@ -42,7 +42,7 @@ functions:
   # - cors: enabled CORS (Cross-Origin Resource Sharing) for browser cross
   #     domain api call
   # - authorizer: authenticate using the AWS IAM role
-  post:
+  postUserMovie:
     handler: createUserMovie.main
     events:
       - http:
@@ -50,7 +50,7 @@ functions:
           method: post
           cors: true
           authorizer: aws_iam
-  get:
+  getUserMovie:
     # Defines an HTTP API endpoint that calls the main function in get.js
     # - path: url path is /notes/{id}
     # - method: GET request
@@ -59,6 +59,29 @@ functions:
       - http:
           path: usermovie/{id}
           method: get
+          cors: true
+          authorizer: aws_iam
+  getUserMovies:
+    # Defines an HTTP API endpoint that calls the main function in list.js
+    # - path: url path is /notes
+    # - method: GET request
+    handler: getUserMovies.main
+    events:
+      - http:
+          path: usermovies
+          method: get
+          cors: true
+          authorizer: aws_iam
+
+  deleteUserMovie:
+    # Defines an HTTP API endpoint that calls the main function in delete.js
+    # - path: url path is /notes/{id}
+    # - method: DELETE request
+    handler: deleteUserMovie.main
+    events:
+      - http:
+          path: usermovie/{id}
+          method: delete
           cors: true
           authorizer: aws_iam
 
