@@ -1,0 +1,11 @@
+{
+    "body": "{\"rating\":\"5\",\"note\":\"this is a note\"}",
+    "pathParameters": {
+    "id": "eaa9c900-7fc2-11ea-ab91-651212ccf430"
+},
+    "requestContext": {
+    "identity": {
+        "cognitoIdentityId": "USER-SUB-1234"
+    }
+}
+}

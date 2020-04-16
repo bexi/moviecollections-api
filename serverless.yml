@@ -1,4 +1,4 @@
-# NOTE: update this with your service name
+# Service name
 service: moviecollections-api
 
 # Create an optimized package for our functions
@@ -37,12 +37,11 @@ provider:
 
 functions:
   # Defines an HTTP API endpoint that calls the main function in create.js
-  # - path: url path is /notes
   # - method: POST request
   # - cors: enabled CORS (Cross-Origin Resource Sharing) for browser cross
   #     domain api call
   # - authorizer: authenticate using the AWS IAM role
-  postUserMovie:
+  createUserMovie:
     handler: createUserMovie.main
     events:
       - http:
@@ -52,7 +51,6 @@ functions:
           authorizer: aws_iam
   getUserMovie:
     # Defines an HTTP API endpoint that calls the main function in get.js
-    # - path: url path is /notes/{id}
     # - method: GET request
     handler: getUserMovie.main
     events:
@@ -63,7 +61,6 @@ functions:
           authorizer: aws_iam
   getUserMovies:
     # Defines an HTTP API endpoint that calls the main function in list.js
-    # - path: url path is /notes
     # - method: GET request
     handler: getUserMovies.main
     events:
@@ -75,13 +72,23 @@ functions:
 
   deleteUserMovie:
     # Defines an HTTP API endpoint that calls the main function in delete.js
-    # - path: url path is /notes/{id}
     # - method: DELETE request
     handler: deleteUserMovie.main
     events:
       - http:
           path: usermovie/{id}
           method: delete
+          cors: true
+          authorizer: aws_iam
+
+  updateUserMovie:
+    # Defines an HTTP API endpoint that calls the main function in update.js
+    # - method: PUT request
+    handler: updateUserMovie.main
+    events:
+      - http:
+          path: usermovie/{id}
+          method: put
           cors: true
           authorizer: aws_iam
 
