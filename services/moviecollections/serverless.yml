@@ -13,6 +13,13 @@ plugins:
   - serverless-offline
   - serverless-dotenv-plugin # Load .env as environment variables
 
+custom:
+  # Our stage is based on what is passed in when running serverless
+  # commands. Or falls back to what we have set in the provider section.
+  stage: ${opt:stage, self:provider.stage}
+  # Name of the SST app that's deploying our infrastructure
+  sstApp: ${self:custom.stage}-moviecollections-infra
+
 provider:
   name: aws
   runtime: nodejs12.x
@@ -22,7 +29,7 @@ provider:
   # These environment variables are made available to our functions
   # under process.env.
   environment:
-    tableName: userMovies
+    tableName: !ImportValue '${self:custom.sstApp}-TableName'
 
   # 'iamRoleStatements' defines the permission policy for the Lambda function.
   # In this case Lambda functions are granted with permissions to access DynamoDB.
@@ -36,7 +43,8 @@ provider:
         - dynamodb:PutItem
         - dynamodb:UpdateItem
         - dynamodb:DeleteItem
-      Resource: "arn:aws:dynamodb:eu-west-1:*:*"
+      Resource:
+        - !ImportValue '${self:custom.sstApp}-TableArn'
 
 functions:
   # Test function
@@ -106,3 +114,5 @@ functions:
 resources:
   # API Gateway Errors
   - ${file(resources/api-gateway-errors.yml)}
+  # Cognito Identity Pool Policy
+  - ${file(resources/cognito-policy.yml)}

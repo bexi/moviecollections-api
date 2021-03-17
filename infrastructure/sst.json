@@ -1,0 +1,6 @@
+{
+  "name": "moviecollections-infra",
+  "stage": "dev",
+  "region": "eu-west-1",
+  "lint": true
+}
