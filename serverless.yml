@@ -1,6 +1,9 @@
 # Service name
 service: moviecollections-api
 
+# Remove later
+useDotenv: true
+
 # Create an optimized package for our functions
 package:
   individually: true
@@ -12,8 +15,8 @@ plugins:
 
 provider:
   name: aws
-  runtime: nodejs10.x
-  stage: prod
+  runtime: nodejs12.x
+  stage: dev
   region: eu-west-1
 
   # These environment variables are made available to our functions
@@ -36,6 +39,13 @@ provider:
       Resource: "arn:aws:dynamodb:eu-west-1:*:*"
 
 functions:
+  # Test function
+  hello:
+    handler: handler.hello
+    events:
+      - http:
+          path: hello
+          method: get
   # Defines an HTTP API endpoint that calls the main function in create.js
   # - method: POST request
   # - cors: enabled CORS (Cross-Origin Resource Sharing) for browser cross
