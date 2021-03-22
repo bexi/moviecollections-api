@@ -1,19 +1,5 @@
 # MovieCollections-API
 
-## Features
-* CI/CD of the whole application - Circle CI
-* Update db model
-* Get all movies for a user from db - done
-* Get a user movie from db - done
-* Add user movie to db - done
-
-### AWS Services used in this application
-* Cognito
-* Lambda
-* Route 53
-* S3
-* DynamoDB
-
 ### Requirements
 
 - [Install the Serverless Framework](https://serverless.com/framework/docs/providers/aws/guide/installation/)
@@ -29,21 +15,14 @@ $ npm install
 
 ### Usage
 
-To run a function on your local
+To deploy infrastructure as code
 
 ``` bash
-$ serverless invoke local --function hello
-$ serverless invoke local --function put --path mocks/create-event.json
-$ serverless invoke local --function get --path mocks/get-event.json
+$ cd infrastructure
+$ npx sst deploy
 ```
 
-To simulate API Gateway locally using [serverless-offline](https://github.com/dherault/serverless-offline)
-
-``` bash
-$ serverless offline start
-```
-
-Deploy your project
+Deploy serverless api
 
 ``` bash
 $ serverless deploy
@@ -53,6 +32,18 @@ Deploy a single function
 
 ``` bash
 $ serverless deploy function --function hello
+```
+
+To run a function on your local
+
+``` bash
+$ serverless invoke local --function hello
+```
+
+To simulate API Gateway locally using [serverless-offline](https://github.com/dherault/serverless-offline)
+
+``` bash
+$ serverless offline start
 ```
 
 #### Running Tests
