@@ -1,6 +1,6 @@
 import { expect, haveResource } from "@aws-cdk/assert";
 import * as sst from "@serverless-stack/resources";
-import DynamoDbStack from "../lib/DynamoDBStack";
+import DynamoDbStack from "../lib/DynamoDbStack";
 
 test("Test Stack", () => {
   const app = new sst.App();
